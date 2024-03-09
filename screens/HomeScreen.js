@@ -10,12 +10,15 @@ const HomeScreen = () => {
   );
   const [locationServicesEnabled, setLocationServicesEnabled] = useState(false);
   useEffect(() => {
+     // fx to check if location services are enabled
     checkIfLocationEnabled();
+    // fx to get the current location
     getCurrentLocation();
   }, [item]);
-
+// Check if location services are enabled
   const checkIfLocationEnabled = async () => {
     let enabled = await Location.hasServicesEnabledAsync();
+    // Display an alert if location services are not enabled
     if (!enabled) {
       Alert.alert(
         "Location services not enabled",
@@ -29,10 +32,15 @@ const HomeScreen = () => {
           { text: "OK", onPress: () => console.log("OK Pressed") },
         ]
       );
-    } else {
+    } else 
+    {
+        // Set the state variable to indicate that location services are enabled
       setLocationServicesEnabled(enabled);
     }
   };
+  const getCurrentLocation = async () => {
+    let (status) = await Location.requestForegroundPermissionsAsync();
+  }
   return (
     <SafeAreaView>
       <Text>HomeScreen</Text>
