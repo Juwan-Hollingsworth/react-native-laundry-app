@@ -42,7 +42,7 @@ const HomeScreen = () => {
     // Request permission from the user to access location in the foreground
     let { status } = await Location.requestForegroundPermissionsAsync();
     // Check if the permission status is not granted
-    if (status != granted) {
+    if (status != "granted") {
       Alert.alert(
         "Permission not granted",
         "Allow the app to use location services",
