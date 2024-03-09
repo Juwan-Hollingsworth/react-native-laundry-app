@@ -10,12 +10,12 @@ const HomeScreen = () => {
   );
   const [locationServicesEnabled, setLocationServicesEnabled] = useState(false);
   useEffect(() => {
-     // fx to check if location services are enabled
+    // fx to check if location services are enabled
     checkIfLocationEnabled();
     // fx to get the current location
     getCurrentLocation();
   }, [item]);
-// Check if location services are enabled
+  // Check if location services are enabled
   const checkIfLocationEnabled = async () => {
     let enabled = await Location.hasServicesEnabledAsync();
     // Display an alert if location services are not enabled
@@ -32,15 +32,50 @@ const HomeScreen = () => {
           { text: "OK", onPress: () => console.log("OK Pressed") },
         ]
       );
-    } else 
-    {
-        // Set the state variable to indicate that location services are enabled
+    } else {
+      // Set the state variable to indicate that location services are enabled
       setLocationServicesEnabled(enabled);
     }
   };
+  //async function to get current location
   const getCurrentLocation = async () => {
-    let (status) = await Location.requestForegroundPermissionsAsync();
-  }
+    // Request permission from the user to access location in the foreground
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    // Check if the permission status is not granted
+    if (status != granted) {
+      Alert.alert(
+        "Permission not granted",
+        "Allow the app to use location services",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ]
+      );
+    }
+    //get langitude and longitude of user
+    const { coords } = await Location.getCurrentPositionAsync();
+    //log coords
+    console(coords);
+    console(response);
+    // if coordinates are available
+    if (coords) {
+      // destructure lat & long
+      const { latitude, longitude } = coords;
+
+      let response = await Location.reverseGeocodeAsync({
+        latitude,
+        longitude,
+      });
+      for (let item of response) {
+        let address = `${item.name} ${item.city} ${item.postalCode}`;
+        setDisplayCurrentAddress(address);
+      }
+    }
+  };
   return (
     <SafeAreaView>
       <Text>HomeScreen</Text>
