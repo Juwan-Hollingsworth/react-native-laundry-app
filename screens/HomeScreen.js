@@ -15,6 +15,7 @@ import { Feather } from "@expo/vector-icons";
 import { SliderBox } from "react-native-image-slider-box";
 import Carousel from "../components/Carousel";
 import pfp from "../assets/juwan.jpg";
+import Services from "../components/Services";
 const HomeScreen = () => {
   //Check if location is enabled on mobile device
   //useEffect fx will run once the Home Screen is loaded or every time the state is updated
@@ -137,8 +138,9 @@ const HomeScreen = () => {
       </View>
 
       {/* image Carousel */}
-
       <Carousel />
+
+      {/* Services Component */}
     </SafeAreaView>
   );
 };
