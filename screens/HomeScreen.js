@@ -10,7 +10,11 @@ import {
 import React, { useEffect, useState } from "react";
 import * as Location from "expo-location";
 import { MaterialIcons } from "@expo/vector-icons";
-
+import { TextInput } from "react-native";
+import { Feather } from "@expo/vector-icons";
+import { SliderBox } from "react-native-image-slider-box";
+import Carousel from "../components/Carousel";
+import pfp from "../assets/juwan.jpg";
 const HomeScreen = () => {
   //Check if location is enabled on mobile device
   //useEffect fx will run once the Home Screen is loaded or every time the state is updated
@@ -90,20 +94,51 @@ const HomeScreen = () => {
   };
   return (
     <SafeAreaView>
-      <View>
-        <MaterialIcons name="location-on" size={30} color="#fd5c63" />
-        <View>
-          <Text style={{ fontSize: 18, fontWeight: "600" }}>Home</Text>
-          <Text>{displayCurrentAddress}</Text>
+      {/* Location & Profile */}
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          padding: 10,
+          justifyContent: "space-between",
+          paddingTop: 40,
+        }}
+      >
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <MaterialIcons name="location-on" size={30} color="#fd5c63" />
+          <View>
+            <Text style={{ fontSize: 18, fontWeight: "600" }}>Home</Text>
+            <Text>{displayCurrentAddress}</Text>
+          </View>
         </View>
         <Pressable>
           <Image
             style={{ width: 50, height: 50, borderRadius: 25 }}
-            src={{ uri: "https://picsum.photos/id/69/200/300" }}
+            source={pfp}
           />
         </Pressable>
       </View>
-      <Text>HomeScreen</Text>
+
+      {/* search bar  */}
+      <View
+        style={{
+          padding: 10,
+          margin: 10,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          borderWidth: 0.8,
+          borderColor: "#C0C0C0",
+          borderRadius: 7,
+        }}
+      >
+        <TextInput placeholder="search for items or more" />
+        <Feather name="search" size={24} color="#fd5c63" />
+      </View>
+
+      {/* image Carousel */}
+
+      <Carousel />
     </SafeAreaView>
   );
 };
