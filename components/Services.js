@@ -1,8 +1,15 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+} from "react-native";
 import React from "react";
-import { ScrollView } from "react-native-web";
 
 const Services = () => {
+  // Array of services with their details
   const services = [
     {
       id: "0",
@@ -26,15 +33,30 @@ const Services = () => {
     },
   ];
   return (
-    <View>
-      <ScrollView>
+    <View style={{ padding: 10 }}>
+      <Text style={{ fontSize: 16, fontWeight: "500", marginBottom: 7 }}>
+        Services Available
+      </Text>
+      {/* Scrollable container for services */}
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {/* Map through services to display each one */}
         {services.map((service, index) => (
-          <Pressable key={index}>
+          <Pressable
+            style={{
+              margin: 10,
+              backgroundColor: "white",
+              padding: 20,
+              borderRadius: 7,
+            }}
+            key={index}
+          >
             <Image
               source={{ uri: service.image }}
               style={{ width: 70, height: 70 }}
             />
-            <Text>{service.name}</Text>
+            <Text style={{ textAlign: "center", marginTop: 10 }}>
+              {service.name}
+            </Text>
           </Pressable>
         ))}
       </ScrollView>

@@ -94,7 +94,7 @@ const HomeScreen = () => {
     }
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: "#F0F0F0", flex: 1 }}>
       {/* Location & Profile */}
       <View
         style={{
@@ -141,6 +141,7 @@ const HomeScreen = () => {
       <Carousel />
 
       {/* Services Component */}
+      <Services />
     </SafeAreaView>
   );
 };
