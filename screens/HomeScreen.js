@@ -6,6 +6,7 @@ import {
   Alert,
   Pressable,
   Image,
+  ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Location from "expo-location";
@@ -16,6 +17,8 @@ import { SliderBox } from "react-native-image-slider-box";
 import Carousel from "../components/Carousel";
 import pfp from "../assets/juwan.jpg";
 import Services from "../components/Services";
+import DressItem from "../components/DressItem";
+
 const HomeScreen = () => {
   //Check if location is enabled on mobile device
   //useEffect fx will run once the Home Screen is loaded or every time the state is updated
@@ -93,8 +96,59 @@ const HomeScreen = () => {
       }
     }
   };
+  const products = [
+    {
+      id: "0",
+      image: "https://cdn-icons-png.flaticon.com/128/4643/4643574.png",
+      name: "shirt",
+      quantity: 0,
+      price: 10,
+    },
+    {
+      id: "11",
+      image: "https://cdn-icons-png.flaticon.com/128/892/892458.png",
+      name: "T-shirt",
+      quantity: 0,
+      price: 10,
+    },
+    {
+      id: "12",
+      image: "https://cdn-icons-png.flaticon.com/128/9609/9609161.png",
+      name: "dresses",
+      quantity: 0,
+      price: 10,
+    },
+    {
+      id: "13",
+      image: "https://cdn-icons-png.flaticon.com/128/599/599388.png",
+      name: "jeans",
+      quantity: 0,
+      price: 10,
+    },
+    {
+      id: "14",
+      image: "https://cdn-icons-png.flaticon.com/128/9431/9431166.png",
+      name: "Sweater",
+      quantity: 0,
+      price: 10,
+    },
+    {
+      id: "15",
+      image: "https://cdn-icons-png.flaticon.com/128/3345/3345397.png",
+      name: "shorts",
+      quantity: 0,
+      price: 10,
+    },
+    {
+      id: "16",
+      image: "https://cdn-icons-png.flaticon.com/128/293/293241.png",
+      name: "Sleeveless",
+      quantity: 0,
+      price: 10,
+    },
+  ];
   return (
-    <SafeAreaView style={{ backgroundColor: "#F0F0F0", flex: 1 }}>
+    <ScrollView style={{ backgroundColor: "#F0F0F0", flex: 1, marginTop: 50 }}>
       {/* Location & Profile */}
       <View
         style={{
@@ -142,7 +196,11 @@ const HomeScreen = () => {
 
       {/* Services Component */}
       <Services />
-    </SafeAreaView>
+      {/* render all products */}
+      {products.map((item, index) => (
+        <DressItem item={item} key={index} />
+      ))}
+    </ScrollView>
   );
 };
 
